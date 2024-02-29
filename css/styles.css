@@ -30,8 +30,14 @@ body {
 }
 
 .header h1 {
-  font-size: 2.5em;
+  font-size: 3em;
   color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #777;
 }
 
 .navbar {
@@ -72,6 +78,28 @@ body {
   padding: 20px 0;
   text-align: center;
 }
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  color: #333;
+}
+
+.card p {
+  color: #777;
+}
+
 </style>
 </head>
 <body>
@@ -98,8 +126,17 @@ body {
 
   <div id="portfolio" class="main-content">
     <h2>Portfolio</h2>
-    <p>Check out some of my recent projects:</p>
-    <!-- Add your portfolio items here -->
+    <div class="card">
+      <h3>Project Title 1</h3>
+      <p>Description of project 1 goes here.</p>
+      <!-- Add image, demo link, etc. -->
+    </div>
+    <div class="card">
+      <h3>Project Title 2</h3>
+      <p>Description of project 2 goes here.</p>
+      <!-- Add image, demo link, etc. -->
+    </div>
+    <!-- Add more portfolio items as needed -->
   </div>
 
   <div id="contact" class="main-content">
