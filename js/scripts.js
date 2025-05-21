@@ -1,62 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alisha Pandey - Personal Website</title>
-<style>
-/* CSS styles here */
-</style>
+  <!-- add this Google Font link -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* theming via CSS variables */
+    :root {
+      --bg: #fff;
+      --text: #333;
+      --primary: #1e88e5;
+      --secondary: #90caf9;
+      --accent: #ff7043;
+      --card-bg: #f7f7f7;
+      --nav-bg: #fff;
+      --footer-bg: #f1f1f1;
+      --btn-bg: var(--primary);
+      --btn-text: #fff;
+      --transition: 0.3s ease;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+    }
+    /* dark mode overrides */
+    body.dark-mode {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --primary: #90caf9;
+      --secondary: #1e88e5;
+      --accent: #ffab91;
+      --card-bg: #1e1e1e;
+      --nav-bg: #1a1a1a;
+      --footer-bg: #1a1a1a;
+      --btn-bg: var(--secondary);
+      --btn-text: #121212;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .header p {
+      font-size: 1.125rem;
+      color: var(--accent);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      background: var(--nav-bg);
+      padding: 12px 0;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background var(--transition);
+    }
+    .navbar ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .navbar a:hover {
+      color: var(--primary);
+    }
+    #darkModeToggle {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background var(--transition), color var(--transition);
+    }
+    #darkModeToggle:hover {
+      opacity: 0.9;
+    }
+
+    .main-content {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .main-content h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .main-content p {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer {
+      background: var(--footer-bg);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      transition: background var(--transition);
+    }
+  </style>
 </head>
-<body>
-
-<div class="container">
-
-  <header class="header">
-    <h1>Alisha Pandey</h1>
-    <p>Frontend Developer</p>
-  </header>
-
-  <nav class="navbar">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="https://www.linkedin.com/in/alsaalsa0/" target="_blank">LinkedIn</a></li>
-    </ul>
-    <button id="darkModeToggle">Toggle Dark Mode</button>
-  </nav>
-
-  <div id="about" class="main-content">
-    <h2>About Me</h2>
-    <p>In the professional realm, I navigate with a quiet confidence that often surprises those who know me outside of work. An introvert at heart, I find my strength in the calm I maintain amidst the storm of challenges that come my way. My curiosity is boundless, driving me to continuously explore and learn new things. Each challenge is an opportunity for growth, and I embrace them with open arms, always eager to stretch the limits of what I can achieve. In a world that's always changing, I find my constant in the pursuit of knowledge and the satisfaction of overcoming the obstacles laid before me.</p>
-  </div>
-
-  <div id="portfolio" class="main-content">
-    <h2>Portfolio</h2>
-    <p>Check out some of my recent projects:</p>
-    <!-- Add your portfolio items here -->
-  </div>
-
-  <div id="contact" class="main-content">
-    <h2>Contact Me</h2>
-    <p>Feel free to get in touch:</p>
-    <p>Email: alishapandey48@gmail.com</p>
-  </div>
-
-</div>
-
-<footer class="footer">
-  <p>&copy; 2024 Alisha Pandey. All rights reserved.</p>
-</footer>
-
-<script>
-// JavaScript code here
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-darkModeToggle.addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-});
-</script>
-
-</body>
-</html>
