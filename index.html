@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Alisha Pandey Website</title>
+        <meta name="description" content="Alisha Pandey's Personal Website" />
+        <meta name="author" content="Alisha Pandey" />
+        <title>Alisha Pandey - Personal Website</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,6 +16,7 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/styles.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <style>
            
@@ -194,30 +195,61 @@
         </style>
     </head>
     <body id="page-top">
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="brp.jpg" alt="..." />
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Alisha Pandey</h1>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Learner</p>
-                <nav>
-                    <a href="http://instagram.com/Jenashreee"><i class="fab fa-instagram-f"></i></a>
-                </nav>
-              
-               
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html">Alisha Pandey</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <img class="profile-image" src="brp.jpg" alt="Alisha Pandey" />
+                    <h1>Alisha Pandey</h1>
+                    <p class="subtitle">Learner & Creative Individual</p>
+                    <div class="social-links">
+                        <a href="http://instagram.com/Jenashreee" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <!-- Add more social links as needed -->
+                    </div>
+                </div>
             </div>
         </header>
-        <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; 2025 Alisha Pandey</small></div>
-        </div>
-        <!-- Bootstrap core JS-->
+
+        <!-- Main Content -->
+        <main class="container">
+            <section class="welcome-section">
+                <div class="card">
+                    <h2>Welcome to My Website</h2>
+                    <p>I'm passionate about learning and exploring new opportunities. This space is where I share my journey, interests, and connect with like-minded individuals.</p>
+                    <div class="cta-buttons">
+                        <a href="about.html" class="btn"><span>Learn More About Me</span></a>
+                        <a href="contact.html" class="btn btn-outline"><span>Get in Touch</span></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Alisha Pandey. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

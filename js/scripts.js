@@ -188,7 +188,7 @@
 
   <section id="hero">
     <div class="container">
-      <h1>Hi, I’m Alisha Pandey</h1>
+      <h1>Hi, I'm Alisha Pandey</h1>
       <p>Frontend Developer passionate about building clean, user-friendly interfaces.</p>
     </div>
   </section>
@@ -240,6 +240,100 @@
     btn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
       btn.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+    });
+
+    // Dark Mode Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or use system preference
+        const currentTheme = localStorage.getItem('theme') || 
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Apply initial theme
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.classList.remove('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        // Toggle theme
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            darkModeToggle.innerHTML = isDark ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+        });
+
+        // Handle contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Here you would typically send the data to a server
+                // For now, we'll just show a success message
+                try {
+                    // Simulate form submission
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'alert alert-success';
+                    successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+                    
+                    contactForm.reset();
+                    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                } catch (error) {
+                    // Show error message
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'alert alert-error';
+                    errorMessage.textContent = 'Sorry, there was an error sending your message. Please try again later.';
+                    
+                    contactForm.parentNode.insertBefore(errorMessage, contactForm.nextSibling);
+                    
+                    // Remove error message after 5 seconds
+                    setTimeout(() => {
+                        errorMessage.remove();
+                    }, 5000);
+                }
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to current navigation item
+        const currentLocation = window.location.pathname;
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            if (link.getAttribute('href') === currentLocation.split('/').pop() || 
+                (currentLocation === '/' && link.getAttribute('href') === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
     });
   </script>
 </body>
