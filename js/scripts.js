@@ -1,340 +1,746 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Alisha Pandey – Frontend Developer</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* CSS Variables for easy theming */
-    :root {
-      --clr-bg: #ffffff;
-      --clr-text: #333333;
-      --clr-accent: #1e88e5;
-      --clr-card: #f7f9fb;
-      --transition: 0.4s;
-    }
-    body.dark {
-      --clr-bg: #121212;
-      --clr-text: #e0e0e0;
-      --clr-accent: #90caf9;
-      --clr-card: #1e1e1e;
-    }
-    /* Base Reset */
-    *, *::before, *::after {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      line-height: 1.6;
-      transition: background var(--transition), color var(--transition);
-    }
-    a { color: var(--clr-accent); text-decoration: none; }
-    a:hover { opacity: 0.8; }
-    img { max-width: 100%; display: block; }
+<style>
+  /* Color Palette - Modern Ombre */
+  :root {
+    /* Primary gradient colors */
+    --gradient-start: #FF6B6B;  /* Coral pink */
+    --gradient-mid: #4ECDC4;    /* Turquoise */
+    --gradient-end: #45B7D1;    /* Ocean blue */
+    
+    /* UI Colors */
+    --light: #FFFFFF;          /* Pure white */
+    --light-transparent: rgba(255, 255, 255, 0.9);
+    --dark: #2C3E50;          /* Deep blue-gray */
+    --nav: rgba(44, 62, 80, 0.95); /* Semi-transparent nav */
+    --text: #F8F9FA;          /* Off-white text */
+    --text-secondary: #E9ECEF; /* Secondary text */
+    
+    /* Component Colors */
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --button-primary: #6366F1;  /* Indigo */
+    --button-secondary: #8B5CF6; /* Purple */
+    --button-hover: #4F46E5;   /* Darker Indigo */
+    --input-bg: rgba(255, 255, 255, 0.15);
+    --border-color: rgba(255, 255, 255, 0.2);
 
-    /* Container */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
+    /* Pastel Color Palette */
+    --pastel-bg: #f8fafc; /* off-white, very light blue */
+    --pastel-primary: #a5d8ff; /* pastel blue */
+    --pastel-secondary: #ffd6e0; /* pastel pink */
+    --pastel-accent: #ffe066; /* pastel yellow */
+    --pastel-green: #caffbf; /* pastel green */
+    --pastel-purple: #d0bfff; /* pastel purple */
+    --pastel-peach: #ffd6a5; /* pastel peach */
+    --text-main: #22223b;
+    --text-secondary: #4a4e69;
+    --card-border: #e0e0e0;
+    --button-bg: var(--pastel-primary);
+    --button-hover: var(--pastel-purple);
+    --button-outline: var(--pastel-secondary);
+    --icon-blue: #74c0fc;
+    --icon-pink: #ffb3c6;
+    --icon-yellow: #ffe066;
+    --icon-green: #baffc9;
+    --icon-purple: #b197fc;
+  }
 
-    /* Nav & Toggle */
-    header {
-      position: sticky; top: 0;
-      background: var(--clr-bg);
-      padding: 1rem 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    .toggle-btn {
-      background: var(--clr-accent);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: opacity var(--transition);
-    }
-    .toggle-btn:hover { opacity: 0.9; }
+  /* Global Reset */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+    color: var(--text);
+    transition: background 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: var(--light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  a:hover {
+    opacity: 0.8;
+    color: var(--light);
+  }
 
-    /* Hero Section */
-    #hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60vh;
-      text-align: center;
-      background: linear-gradient(135deg, #1e88e5, #90caf9);
-      color: #fff;
-      padding: 2rem 1rem;
-    }
-    #hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    #hero p {
-      font-size: 1.125rem;
-      max-width: 600px;
-    }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+  }
 
-    /* Sections */
-    section {
-      padding: 4rem 0;
-    }
-    section h2 {
-      text-align: center;
-      color: var(--clr-accent);
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-    }
-    section p { max-width: 700px; margin: 0 auto 1.5rem; text-align: center; }
+  /* Navigation */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--nav);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
 
-    /* Portfolio Grid */
-    .grid {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-    .card {
-      background: var(--clr-card);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin-bottom: 0.75rem;
-      color: var(--clr-accent);
-    }
+  .nav-brand a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-    /* Contact Form */
-    form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color: var(--text);
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-mid));
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  /* Dark Mode Toggle Button */
+  #darkModeToggle {
+    background: transparent;
+    border: 2px solid var(--pastel-primary);
+    color: var(--pastel-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+  }
+
+  #darkModeToggle:hover {
+    background: var(--pastel-primary);
+    color: var(--text-main);
+  }
+
+  body.dark-mode #darkModeToggle {
+    border-color: var(--pastel-primary);
+    color: var(--pastel-primary);
+  }
+
+  body.dark-mode #darkModeToggle:hover {
+    background: var(--pastel-primary);
+    color: var(--text-main);
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 107, 0.9),
+        rgba(78, 205, 196, 0.9),
+        rgba(69, 183, 209, 0.9)
+    );
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.1;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--light-transparent);
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--light);
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--light);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  /* Social Links */
+  .social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .social-icon {
+    font-size: 1.5rem;
+    color: var(--light);
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: translateY(-3px);
+    color: var(--light);
+  }
+
+  /* ADD LINKEDIN & BUSINESS ICON COLORS */
+  .social-icon.fa-linkedin {
+    /* LinkedIn’s signature blue—or use your var(--icon-purple) if you prefer pastel */
+    color: #0A66C2; /* Official LinkedIn blue */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .social-icon.fa-linkedin:hover {
+    color: #074a9e; /* A slightly darker LinkedIn blue on hover */
+  }
+
+  .social-icon.fa-briefcase {
+    /* Treat the briefcase as a “business” icon; use your pastel-green or pastel-accent */
+    color: var(--icon-green);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .social-icon.fa-briefcase:hover {
+    color: var(--icon-yellow);
+  }
+  /* END: new icon rules */
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(164, 174, 196, 0.08);
+    transition: all 0.3s ease;
+    color: var(--text-main);
+  }
+
+  .card h1 {
+    color: var(--light);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .card h2 {
+    color: var(--light);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.8rem;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    background: var(--button-bg);
+    color: var(--text-main);
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0.5rem;
+    box-shadow: 0 2px 8px rgba(164, 174, 196, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--button-primary), var(--button-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn:hover {
+    background: var(--button-hover);
+    color: var(--text-main);
+  }
+
+  .btn:hover::before {
+    opacity: 1;
+  }
+
+  .btn span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--button-outline);
+    color: var(--text-main);
+  }
+
+  .btn-outline:hover {
+    background: var(--button-outline);
+    color: var(--text-main);
+  }
+
+  /* About Section */
+  .about-section,
+  .contact-section {
+    padding: 2rem 0;
+  }
+
+  .about-content,
+  .contact-content {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .about-text h2 {
+    color: var(--light);
+    margin-bottom: 1rem;
+  }
+
+  .about-text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Contact Section */
+  .contact-methods {
+    margin-top: 2rem;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+  }
+
+  .contact-method:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .contact-method i {
+    font-size: 1.5rem;
+    color: var(--light);
+  }
+
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gradient-mid);
+    box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--nav);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    margin-top: auto;
+    text-align: center;
+  }
+
+  .footer p {
+    color: var(--light);
+    opacity: 0.8;
+  }
+
+  /* Dark Theme Overrides */
+  body.dark-mode {
+    --gradient-start: #1E293B;  /* Slate 800 */
+    --gradient-mid: #334155;   /* Slate 700 */
+    --gradient-end: #0F172A;   /* Slate 900 */
+    --nav: rgba(15, 23, 42, 0.98); /* Slate 900 with opacity */
+    --card-bg: #232946;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --button-primary: #818CF8;  /* Indigo 400 */
+    --button-secondary: #A78BFA; /* Purple 400 */
+    --button-hover: #6366F1;    /* Indigo 500 */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text: #f4f4f4;
+  }
+
+  body.dark-mode .navbar,
+  body.dark-mode .footer {
+    background: #232946;
+    border-color: var(--border-color);
+  }
+
+  body.dark-mode .card {
+    background: #232946;
+    border-color: var(--border-color);
+  }
+
+  body.dark-mode .card h1,
+  body.dark-mode .card h2 {
+    color: var(--text);
+  }
+
+  body.dark-mode .form-group label {
+    color: var(--text);
+  }
+
+  body.dark-mode .form-group input,
+  body.dark-mode .form-group textarea {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text);
+  }
+
+  body.dark-mode .form-group input:focus,
+  body.dark-mode .form-group textarea:focus {
+    border-color: var(--button-primary);
+    box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+  }
+
+  body.dark-mode .btn {
+    box-shadow: 0 4px 15px rgba(129, 140, 248, 0.2);
+  }
+
+  body.dark-mode .btn:hover {
+    box-shadow: 0 6px 20px rgba(129, 140, 248, 0.3);
+  }
+
+  body.dark-mode .btn-outline {
+    border-color: var(--button-primary);
+    color: var(--button-primary);
+  }
+
+  body.dark-mode .btn-outline:hover {
+    background: var(--button-primary);
+    color: var(--light);
+  }
+
+  /* Alert Messages */
+  .alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    backdrop-filter: blur(10px);
+  }
+
+  .alert-success {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    color: var(--light);
+  }
+
+  .alert-error {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: var(--light);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
       flex-direction: column;
       gap: 1rem;
+      padding: 1rem;
     }
-    form input, form textarea {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: border-color var(--transition);
-    }
-    form input:focus, form textarea:focus {
-      border-color: var(--clr-accent);
-      outline: none;
-    }
-    form button {
-      align-self: center;
-      background: var(--clr-accent);
-      color: #fff;
-      border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: opacity var(--transition);
-    }
-    form button:hover { opacity: 0.9; }
 
-    /* Footer */
-    footer {
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
       text-align: center;
-      padding: 2rem 0;
-      background: var(--clr-card);
     }
 
-    @media (max-width: 600px) {
-      #hero h1 { font-size: 2rem; }
-      header nav { flex-direction: column; gap: 1rem; }
+    .hero h1 {
+      font-size: 2.5rem;
     }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="toggle-btn" id="theme-toggle">Dark Mode</button>
-      </nav>
-    </div>
-  </header>
 
-  <section id="hero">
-    <div class="container">
-      <h1>Hi, I'm Alisha Pandey</h1>
-      <p>Frontend Developer passionate about building clean, user-friendly interfaces.</p>
-    </div>
-  </section>
+    .about-content,
+    .contact-content {
+      grid-template-columns: 1fr;
+    }
 
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>An introvert with boundless curiosity, I thrive on solving challenges and continuously learning new technologies to create engaging web experiences.</p>
-    </div>
-  </section>
+    .profile-image {
+      width: 150px;
+      height: 150px;
+    }
+  }
 
-  <section id="portfolio">
-    <div class="container">
-      <h2>Portfolio</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Project One</h3>
-          <p>Brief description of your first project. Swap in links or images as needed.</p>
-        </div>
-        <div class="card">
-          <h3>Project Two</h3>
-          <p>Brief description of your second project.</p>
-        </div>
-        <!-- Add more .card blocks here -->
-      </div>
-    </div>
-  </section>
+  @media (max-width: 480px) {
+    .container {
+      padding: 1rem;
+    }
 
-  <section id="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <form action="mailto:alishapandey48@gmail.com" method="POST" enctype="text/plain">
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  </section>
+    .hero h1 {
+      font-size: 2rem;
+    }
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Alisha Pandey. All rights reserved.</p>
-    </div>
-  </footer>
+    .subtitle {
+      font-size: 1.2rem;
+    }
 
-  <script>
-    const btn = document.getElementById('theme-toggle');
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      btn.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
-    });
+    .card {
+      padding: 1.5rem;
+    }
+  }
 
-    // Dark Mode Toggle
-    document.addEventListener('DOMContentLoaded', () => {
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme preference or use system preference
-        const currentTheme = localStorage.getItem('theme') || 
-            (prefersDarkScheme.matches ? 'dark' : 'light');
-        
-        // Apply initial theme
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            document.body.classList.remove('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
+  /* Pastel Color Palette */
+  body, .offwhite-bg {
+    background: var(--pastel-bg) !important;
+    color: var(--text-main);
+  }
 
-        // Toggle theme
-        darkModeToggle.addEventListener('click', () => {
-            const isDark = document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            darkModeToggle.innerHTML = isDark ? 
-                '<i class="fas fa-sun"></i>' : 
-                '<i class="fas fa-moon"></i>';
-        });
+  .navbar, .footer {
+    background: #fff;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-main);
+  }
 
-        // Handle contact form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData.entries());
-                
-                // Here you would typically send the data to a server
-                // For now, we'll just show a success message
-                try {
-                    // Simulate form submission
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                    
-                    // Show success message
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'alert alert-success';
-                    successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
-                    
-                    contactForm.reset();
-                    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 5000);
-                } catch (error) {
-                    // Show error message
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'alert alert-error';
-                    errorMessage.textContent = 'Sorry, there was an error sending your message. Please try again later.';
-                    
-                    contactForm.parentNode.insertBefore(errorMessage, contactForm.nextSibling);
-                    
-                    // Remove error message after 5 seconds
-                    setTimeout(() => {
-                        errorMessage.remove();
-                    }, 5000);
-                }
-            });
-        }
+  .nav-links a {
+    color: var(--text-secondary);
+  }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  .nav-links a.active, .nav-links a:hover {
+    background: var(--pastel-primary);
+    color: var(--text-main);
+  }
 
-        // Add active class to current navigation item
-        const currentLocation = window.location.pathname;
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            if (link.getAttribute('href') === currentLocation.split('/').pop() || 
-                (currentLocation === '/' && link.getAttribute('href') === 'index.html')) {
-                link.classList.add('active');
-            }
-        });
-    });
-  </script>
-</body>
-</html>
+  .profile-image-large {
+    border: 4px solid var(--pastel-primary);
+    box-shadow: 0 4px 24px rgba(164, 174, 196, 0.12);
+  }
+
+  .hero-links .hero-link i.fa-envelope { color: var(--icon-blue); }
+  .hero-links .hero-link i.fa-linkedin { color: var(--icon-purple); }
+  .hero-links .hero-link i.fa-instagram { color: var(--icon-pink); }
+
+  .tagline i { color: var(--icon-blue); }
+  .location i { color: var(--icon-green); }
+  .core-value i { color: var(--icon-yellow); }
+
+  .writings-section i.fa-pen-nib { color: var(--icon-purple); }
+
+  .contact-list i.fa-envelope { color: var(--icon-blue); }
+  .contact-list i.fa-linkedin { color: var(--icon-purple); }
+  .contact-list i.fa-instagram { color: var(--icon-pink); }
+
+  .hero-bg-svg svg path {
+    fill: var(--pastel-secondary);
+    opacity: 0.5;
+  }
+
+  /* Accessibility: high contrast for dark mode */
+  body.dark-mode {
+    --pastel-bg: #232946;
+    --card-bg: #232946;
+    --card-border: #393e46;
+    --text-main: #f4f4f4;
+    --text-secondary: #e0e0e0;
+    --button-bg: #b8c1ec;
+    --button-hover: #eebbc3;
+    --button-outline: #eebbc3;
+  }
+  body.dark-mode .navbar, body.dark-mode .footer {
+    background: #232946;
+    color: #f4f4f4;
+  }
+  body.dark-mode .card {
+    background: #232946;
+    color: #f4f4f4;
+  }
+  body.dark-mode .btn, body.dark-mode .btn-outline {
+    color: #232946;
+  }
+  body.dark-mode .profile-image-large {
+    border-color: #b8c1ec;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .profile-image-large { width: 120px; height: 120px; }
+    .card { padding: 1rem; }
+  }
+
+  /* Pastel SVG Graphics */
+  .pastel-blob-bg {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 320px;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .blob-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .pastel-divider {
+    width: 100%;
+    margin: 0;
+    line-height: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-section, .about-hero, .contact-hero {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 600px) {
+    .pastel-blob-bg { height: 180px; }
+    .blob-svg { height: 180px; }
+  }
+
+  .vibrant-icons {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1.5rem 0 1rem 0;
+  }
+  .vibrant-icons .hero-link, .vibrant-icons li {
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    gap: 0.5rem;
+  }
+  .pastel-icon {
+    font-size: 2.2rem !important;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .pastel-blue { color: #74c0fc !important; }
+  .pastel-purple { color: #b197fc !important; }
+  .pastel-pink { color: #ffb3c6 !important; }
+  .vibrant-icons .hero-link:hover .pastel-icon,
+  .vibrant-icons li:hover .pastel-icon {
+    transform: scale(1.15) rotate(-8deg);
+    filter: brightness(1.2);
+  }
+  .vibrant-icons .hero-link:hover, .vibrant-icons li:hover {
+    color: var(--pastel-purple);
+  }
+
+  /* Improve font alignment and vibrancy */
+  .hero-text, .about-hero-text, .contact-hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .hero-text h1, .about-hero-text h1, .contact-hero-text h1 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.2em;
+  }
+  .tagline, .location, .core-value {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card h2 {
+    color: var(--pastel-purple);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+</style>

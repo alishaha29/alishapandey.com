@@ -724,3 +724,12 @@
     margin-bottom: 1rem;
   }
 </style>
+<div class="social-links">
+  <!-- LinkedIn icon -->
+  <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon fa fa-linkedin"></a>
+
+  <!-- Business icon (briefcase) -->
+  <a href="/business-page" class="social-icon fa fa-briefcase"></a>
+
+  <!-- Other icons (e.g. Twitter) would just use .social-icon.fa-twitter, etc. -->
+</div>
