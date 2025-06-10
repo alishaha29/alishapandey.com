@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Alisha Pandey - Explorer</title>
+  <title>Alisha Pandey - Explorer!</title>
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico"/>
   <!-- Google Fonts -->
@@ -13,8 +13,8 @@
 </head>
 <body>
   <header class="hero">
-    <div class="avatar-container">
-      <img class="avatar" src="profile.jpg" alt="Alisha Pandey" loading="eager"/>
+    <div class="avatar-container floating-avatar">
+      <img class="avatar" src="Profile.jpg" srcset="Profile.jpg 1x, Profile.jpg 2x" alt="Alisha Pandey" loading="eager"/>
     </div>
     <h1>Alisha Pandey</h1>
     <p>Explorer</p>
@@ -52,38 +52,29 @@
         </a>
       </div>
     </div>
+  
   </header>
   <main>
     <section class="section-card" id="about">
-      <div class="card">
+      <div class="card fade-in-up">
         <h2>About Me</h2>
         <p>I don't always know where to start but once I see it come to life, the path makes sense.</p>
       </div>
     </section>
-
+ </header>
+  <main>
     <section class="section-card" id="experience">
-      <div class="card">
+      <div class="card fade-in-up">
         <h2><i class="fas fa-briefcase"></i> Life Experience</h2>
-        <p>A curious mind, a builder at heart, and someone who loves turning random ideas into something impactful. My journey's been a mix of exploration, experimentation, and a whole lot of learning-by-doing. Whether it's solving problems, designing new paths, or just asking "what if?", </p>
+        <p>A curious mind, a builder at heart, and someone who loves turning random ideas into something impactful. My journey's been a mix of exploration, experimentation, and a whole lot of learning-by-doing. Whether it's solving problems, designing new paths, or just asking "what if?"</p>
       </div>
     </section>
-
+  </header>
+  <main>
     <section class="section-card" id="contact">
-      <div class="card">
+      <div class="card fade-in-up">
         <h2><i class="fas fa-paper-plane"></i> Let's Connect</h2>
-        <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color); margin-bottom: 2rem;">
-          If you're into swapping stories, brainstorming ideas, or just chatting about what drives us—let's talk. Whether we build something together or simply learn from each other, I'm all in for good conversations and new connections.
-        </p>
-        <div class="action-buttons" style="margin-top: 2.5rem; justify-content: center;">
-          <a href="mailto:your.email@example.com" class="action-button" style="min-width: 200px;">
-            <i class="fas fa-envelope"></i>
-            Send Message
-          </a>
-          <a href="https://www.linkedin.com/in/alsaalsa0/" target="_blank" class="action-button" style="min-width: 200px;">
-            <i class="fab fa-linkedin"></i>
-            Connect on LinkedIn
-          </a>
-        </div>
+        <p>If you're into swapping stories, brainstorming ideas, or just chatting about what drives us—let's talk. Whether we build something together or simply learn from each other, I'm all in for good conversations and new connections.</p>
       </div>
     </section>
   </main>
@@ -95,5 +86,19 @@
   </footer>
   <!-- Font Awesome JS -->
   <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    fadeEls.forEach(el => observer.observe(el));
+  });
+  </script>
 </body>
 </html>

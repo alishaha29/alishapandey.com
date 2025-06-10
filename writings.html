@@ -183,7 +183,9 @@
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Love" class="writing-img" />
         <h3>Love</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Love;
 The feeling he had for her
 Love,
@@ -204,12 +206,15 @@ Love,
 That was never confessed.
 Love,
 The end
-        </pre>
+          </pre>
+        </div>
       </div>
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Introspection" class="writing-img" />
         <h3>It's Ok</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Are there days when you want to just chill and do nothing. You look for a good movie and try to chill. By the time you change the movie for the fourth time and finally watching one, you are lost!
 
 Are there days when you want to read a pending book, you start but it's already an hour you're on the first page.
@@ -229,12 +234,15 @@ I don't want to lose myself but find myself.
 I have days where I want to be alone but not lonely.
 I have days where I type long messages but keep it in the draft.
 And trust me, that's ok. 🖤
-        </pre>
+          </pre>
+        </div>
       </div>
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80" alt="Butterflies" class="writing-img" />
         <h3>Butterflies</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Damn! All those butterflies
 All the promises we made were never lies
 Growing old together, how the time flies
@@ -243,23 +251,29 @@ How we looked at each other in the eyes
 Looking back on how we walked all those miles
 All the memories that I try to memorize
 Damn, it still gives me butterflies
-        </pre>
+          </pre>
+        </div>
       </div>
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Bubble" class="writing-img" />
         <h3>Bubble</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Lately I realized that sometimes when you let someone in your bubble it's not that bad. You get to stay in a bigger and happier bubble. Is it good to be an open book once in a while? I am scared because people might just lose interest after reading you for a while and the pages remain unturned. It is never about the next chapter it's about the effort and time you invest in that person to turn the pages, the person becomes a part of it too.
 
 People that enter our life happen to be a character in a chapter but why not the whole book? Why does the journey start and never end? And that hurts because you make stories about them and one day they disappear and you're not sure if you are to stop or continue without that person. And it again takes me to the part where I want to be in the bubble all by myself. It kind of sucks when it's your book but someone else is writing the story.
 
 You sometimes don't have a name for few a relationships and maybe that's awesome because you vibe with that person, you feel good talking to them. You've just started talking, never met but you trust them and they trust you too. You can be you and there are no commitments. They unintentionally play an important part in your life and you're not sure if they're meant to stay or one day they disappear.
-        </pre>
+          </pre>
+        </div>
       </div>
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Friends" class="writing-img" />
         <h3>Out of the Seven Billions</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Out of the seven billions
 I want some to forever be mine
 Mine, as sweet as the old wine
@@ -273,12 +287,15 @@ Just not friends, they'd be my lifeline
 Ones I can call in the midnight or nine
 Out of the seven billions
 Always be mine.
-        </pre>
+          </pre>
+        </div>
       </div>
       <div class="writing-card">
         <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80" alt="Sky" class="writing-img" />
         <h3>Questions to the Sky</h3>
-        <pre>
+        <button class="read-more-btn">Read More</button>
+        <div class="writing-content">
+          <pre>
 Questions to the sky
 Dear sky,
 Why is staring at you a craze?
@@ -295,9 +312,19 @@ and when you pour some rain
 how do you wash away all my pain
 why the glance of you such an amaze
 is staring at you really a craze?
-        </pre>
+          </pre>
+        </div>
       </div>
     </div>
   </main>
+  <script>
+  document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      content.classList.toggle('show');
+      this.textContent = content.classList.contains('show') ? 'Hide' : 'Read More';
+    });
+  });
+  </script>
 </body>
 </html> 
