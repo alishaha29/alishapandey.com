@@ -1,24 +1,27 @@
 /* Core Styles */
 :root {
-  --bg-color: #fdf6f8;
-  --text-color: #2d3436;
-  --accent-color: #ff9ecd;
-  --secondary-color: #a8e6cf;
-  --tertiary-color: #f3e8ff;
-  --card-bg: #ffffff;
-  --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  --button-hover: #ff7eb6;
-  --gradient-start: #ff9ecd;
-  --gradient-end: #a8e6cf;
-  --social-bg: rgba(255,255,255,0.15);
-  --social-hover: rgba(255,255,255,0.25);
-  --primary-color: #ff9ecd;
-  --light-text: #636e72;
-  --border-color: #dfe6e9;
+  /* Pastel Palette */
+  --bg-color: #faf8fa;           /* very light blush */
+  --text-color: #3b3f41;         /* soft charcoal */
+  --primary-color: #ffb3c1;      /* pastel pink */
+  --secondary-color: #c3e8d9;    /* mint */
+  --tertiary-color: #e6e3f8;     /* lavender */
+  --accent-color: #ffb3c1;       /* same as primary for consistency */
+  --gradient-start: #ffe4ec;     /* blush gradient start */
+  --gradient-end: #d4f1e4;       /* mint-lavender gradient end */
 
-  /* New vars for responsiveness */
-  --hero-min-height: 90vh;                   /* Hero section height */
-  --avatar-size: clamp(600px, 50vw, 400px);  /* Avatar dimensions */
+  /* UI elements */
+  --card-bg: #ffffff;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --button-hover: #ff9ab3;       /* slightly deeper pink on hover */
+  --social-bg: rgba(255, 255, 255, 0.2);
+  --social-hover: rgba(255, 255, 255, 0.35);
+  --light-text: #7d8a92;         /* muted gray */
+  --border-color: #e0e4e8;       /* soft gray */
+
+  /* Responsiveness */
+  --hero-min-height: clamp(120vh, 130vh, 150vh);
+  --avatar-size: clamp(250px, 60vw, 350px);
 }
 
 *, *::before, *::after {
@@ -41,10 +44,10 @@ header.hero {
   align-items: center;
   justify-content: center;
   min-height: var(--hero-min-height);
-  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   color: var(--bg-color);
   text-align: center;
-  padding: clamp(5rem, 12vw, 8rem);
+  padding: clamp(4rem, 10vw, 7rem);
   position: relative;
   overflow: hidden;
 }
@@ -52,30 +55,30 @@ header.hero {
 /* Decorative SVG overlay */
 header.hero::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: url("data:image/svg+xml,...") center/cover no-repeat;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 /* Avatar container */
 .avatar-container {
   position: relative;
-  margin-bottom: 2.5rem;
-  padding: 8px;
-  border-radius: 100%;
+  margin-bottom: 2rem;
+  padding: 10px;
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  transition: all 0.5s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 .avatar-container:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 .avatar-container.floating-avatar {
-  animation: floatAvatar 5s ease-in-out infinite alternate;
-  background: linear-gradient(135deg, #fff0f8 0%, #e3fff7 100%);
-  border-radius: 2.5rem;
-  padding: 18px;
+  animation: floatAvatar 6s ease-in-out infinite alternate;
+  background: var(--tertiary-color);
+  padding: 16px;
 }
 
 /* Responsive avatar */
@@ -84,9 +87,9 @@ header.hero::before {
   height: var(--avatar-size);
   object-fit: cover;
   object-position: center;
-  border: 8px solid rgba(255,255,255,0.9);
-  border-radius: 2.5rem;
-  transition: all 0.5s ease;
+  border: 8px solid rgba(255, 255, 255, 0.9);
+  border-radius: 2rem;
+  transition: transform 0.5s ease;
   display: block;
   position: relative;
   z-index: 1;
@@ -96,28 +99,67 @@ header.hero::before {
 .avatar-container::before,
 .avatar-container::after {
   content: '';
-  position: absolute; inset: -2px;
+  position: absolute;
+  inset: -3px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1), rgba(255,255,255,0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4)
+  );
   mask-composite: exclude;
   pointer-events: none;
 }
-@keyframes rotate { to { transform: rotate(360deg); } }
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
 
 /* Headings */
 header h1 {
-  font-size: clamp(4rem, 10vw, 6rem);
+  font-size: clamp(3.5rem, 9vw, 5.5rem);
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 header p {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 500;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   max-width: 600px;
+  color: var(--light-text);
 }
 
-/* Buttons, cards, footer, etc. */
-/* (Rest of your original CSS here unchanged) */
+/* Buttons */
+button,
+a.button {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover,
+a.button:hover {
+  background-color: var(--button-hover);
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--light-text);
+  background: var(--secondary-color);
+}
