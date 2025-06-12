@@ -17,8 +17,8 @@
   --border-color: #dfe6e9;
 
   /* New vars for responsiveness */
-  --hero-min-height: 150vh;                   /* Hero section height */
-  --avatar-size: clamp(600px, 90vw, 400px);  /* Avatar dimensions */
+  --hero-min-height: 90vh;                   /* Hero section height */
+  --avatar-size: clamp(600px, 50vw, 400px);  /* Avatar dimensions */
 }
 
 *, *::before, *::after {
@@ -62,7 +62,7 @@ header.hero::before {
   position: relative;
   margin-bottom: 2.5rem;
   padding: 8px;
-  border-radius: 50%;
+  border-radius: 100%;
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   transition: all 0.5s ease;
