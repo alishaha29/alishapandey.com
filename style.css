@@ -17,8 +17,8 @@
   --border-color: #dfe6e9;
 
   /* New vars for responsiveness */
-  --hero-min-height: 90vh;                   /* Hero section height */
-  --avatar-size: clamp(300px, 50vw, 500px);  /* Avatar dimensions */
+  --hero-min-height: 150vh;                   /* Hero section height */
+  --avatar-size: clamp(600px, 90vw, 400px);  /* Avatar dimensions */
 }
 
 *, *::before, *::after {
