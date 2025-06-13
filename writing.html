@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alisha Pandey - Writing</title>
+    <meta name="description" content="Alisha Pandey's Writing Collection">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand">AP</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="writing.html" class="active">Writing</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="writing-section">
+        <div class="container">
+            <h1 class="page-title fade-in">Writing</h1>
+            <div class="writing-grid">
+                <article class="writing-card fade-in" data-writing-id="1">
+                    <h3>Our Happy Place</h3>
+                    <div class="writing-preview">How would the world be if we'd encourage instead of judge...</div>
+                    <button class="read-more-btn" onclick="openWriting(1)" aria-label="Read more about Our Happy Place">
+                        Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </article>
+
+                <article class="writing-card fade-in" data-writing-id="2">
+                    <h3>Living in a Bubble</h3>
+                    <div class="writing-preview">Lately, I've been living in a bubble...</div>
+                    <button class="read-more-btn" onclick="openWriting(2)" aria-label="Read more about Living in a Bubble">
+                        Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </article>
+
+                <article class="writing-card fade-in" data-writing-id="3">
+                    <h3>Butterflies</h3>
+                    <div class="writing-preview">Damn! All those butterflies...</div>
+                    <button class="read-more-btn" onclick="openWriting(3)" aria-label="Read more about Butterflies">
+                        Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </article>
+
+                <article class="writing-card fade-in" data-writing-id="4">
+                    <h3>Love's Journey</h3>
+                    <div class="writing-preview">Love; The feeling he had for her...</div>
+                    <button class="read-more-btn" onclick="openWriting(4)" aria-label="Read more about Love's Journey">
+                        Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Modals -->
+    <div class="writing-modal" id="modal-1" role="dialog" aria-labelledby="modal-title-1" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeWriting(1)" aria-label="Close modal">&times;</button>
+            <h3 id="modal-title-1">Our Happy Place</h3>
+            <div class="poem-content">
+                <p>How would the world be if we'd encourage instead of judge<br>
+                How would relationships be if we'd talk than hold grudge<br>
+                Wouldn't it be easy if we'd show some sympathy<br>
+                How about helping with a bit of empathy<br>
+                How hard is it to love than to hate<br>
+                Why do we have to forget memories than recreate<br>
+                Wouldn't it be easy to compliment than offend<br>
+                How hard is it to make someone smile and defend<br>
+                How hard is it to help heal than inflict wounds<br>
+                Wouldn't it be peaceful when the positivity surrounds<br>
+                How about a world full of love<br>
+                How about not bringing people down and help moving above</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="writing-modal" id="modal-2" role="dialog" aria-labelledby="modal-title-2" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeWriting(2)" aria-label="Close modal">&times;</button>
+            <h3 id="modal-title-2">Living in a Bubble</h3>
+            <div class="poem-content">
+                <p>Lately, I've been living in a bubble<br>
+                Keeping myself away from trouble<br>
+                I have been loving this solitude<br>
+                With the aroma of coffee I brewed<br>
+                Friends with the sky and the moon<br>
+                Indulging the smell of rain this monsoon<br>
+                Not in solitary or gone that far<br>
+                Just a little more love for the stars<br>
+                Obsessed with the cool breeze that sway<br>
+                An addition in my calendar for self love day<br>
+                I have been being so subtle<br>
+                Wrapping up my thoughts in a bottle<br>
+                So happy being in my own bubble<br>
+                A bubble, keeping me away from trouble</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="writing-modal" id="modal-3" role="dialog" aria-labelledby="modal-title-3" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeWriting(3)" aria-label="Close modal">&times;</button>
+            <h3 id="modal-title-3">Butterflies</h3>
+            <div class="poem-content">
+                <p>Damn! All those butterflies<br>
+                All the promises we made were never lies<br>
+                Growing old together, how the time flies<br>
+                Cups of coffee and some fries<br>
+                How we looked at each other in the eyes<br>
+                Looking back on how we walked all those miles<br>
+                All the memories that I try to memorize<br>
+                Damn, it still gives me butterflies</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="writing-modal" id="modal-4" role="dialog" aria-labelledby="modal-title-4" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeWriting(4)" aria-label="Close modal">&times;</button>
+            <h3 id="modal-title-4">Love's Journey</h3>
+            <div class="poem-content">
+                <p>Love;<br>
+                The feeling he had for her<br>
+                Love,<br>
+                That he ignored<br>
+                Love,<br>
+                The feeling she had for another<br>
+                Love,<br>
+                That they ignored<br>
+                Love,<br>
+                That turned absurd<br>
+                Love,<br>
+                Treated as an abide<br>
+                Love,<br>
+                A promise not to fall for again<br>
+                Love,<br>
+                That made them apart<br>
+                Love,<br>
+                That was never confessed<br>
+                Love,<br>
+                The end</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Alisha Pandey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Navigation
+        const navbar = document.querySelector('.navbar');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Writing modals with keyboard support
+        function openWriting(id) {
+            const modal = document.getElementById(`modal-${id}`);
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus trap
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+            
+            firstFocusable.focus();
+
+            modal.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeWriting(id);
+                }
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            e.preventDefault();
+                            lastFocusable.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            e.preventDefault();
+                            firstFocusable.focus();
+                        }
+                    }
+                }
+            });
+        }
+
+        function closeWriting(id) {
+            const modal = document.getElementById(`modal-${id}`);
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            document.querySelector(`[data-writing-id="${id}"] .read-more-btn`).focus();
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.writing-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    const id = modal.id.split('-')[1];
+                    closeWriting(id);
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html> 
