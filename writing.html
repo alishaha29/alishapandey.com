@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="nav-content">
             <a href="index.html" class="nav-brand">AP</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="writing.html" class="active">Writing</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="mobile-menu" aria-label="Toggle menu">
+            <button class="mobile-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -29,7 +29,7 @@
 
     <section class="writing-section">
         <div class="container">
-            <h1 class="page-title fade-in">Writing</h1>
+            <h1 class="page-title fade-in" style="text-align:center;">Writing</h1>
             <div class="writing-grid">
                 <article class="writing-card fade-in" data-writing-id="1">
                     <h3>Our Happy Place</h3>
@@ -167,7 +167,7 @@
         // Enhanced Navigation
         const navbar = document.querySelector('.navbar');
         const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+        const navLinks = document.getElementById('navLinks');
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -182,14 +182,24 @@
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            const expanded = navLinks.classList.contains('active');
+            mobileMenu.setAttribute('aria-expanded', expanded);
         });
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu when clicking outside or on a link
         document.addEventListener('click', (e) => {
             if (!navbar.contains(e.target)) {
                 navLinks.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
             }
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            });
         });
 
         // Writing modals with keyboard support

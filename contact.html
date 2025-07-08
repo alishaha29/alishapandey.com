@@ -12,43 +12,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="nav-content">
             <a href="index.html" class="nav-brand">AP</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="writing.html">Writing</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <button class="mobile-menu" aria-label="Toggle menu">
+            <button class="mobile-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
+    <!-- Final polish for Get in Touch heading and section -->
+    <div style="margin-top: calc(1.6in + 3.5rem); margin-bottom: 1.5rem; text-align: center;">
+      <h1 class="page-title fade-in" style="font-size:2.2rem; font-weight:700; color:var(--primary-color); margin-bottom:0.5rem;">Get in Touch</h1>
+      <div style="width: 60px; height: 4px; background: var(--accent-color); margin: 0.5rem auto 0 auto; border-radius: 2px;"></div>
+    </div>
     <section class="contact-section">
-        <div class="container">
-            <h1 class="page-title fade-in">Get in Touch</h1>
+        <div class="container" style="max-width: 480px; background: var(--gradient-light); border-radius: 18px; box-shadow: 0 4px 24px rgba(66,62,40,0.10); padding: 2rem 1.2rem;">
             <div class="contact-info">
-                <a href="mailto:alishapandey48@gmail.com" class="contact-item fade-in">
+                <a href="mailto:alishapandey48@gmail.com" class="contact-item fade-in" aria-label="Email Alisha Pandey" style="margin-bottom:1.2rem; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(66,62,40,0.06); padding: 1.2rem; display: flex; align-items: center; gap: 1rem;">
                     <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <span>alishapandey48@gmail.com</span>
+                    <div style="text-align:left;">
+                      <h3 style="margin:0; font-size:1.1rem; color:var(--primary-color);">Email</h3>
+                      <span style="font-size:1rem; color:var(--secondary-color);">alishapandey48@gmail.com</span>
+                    </div>
                 </a>
-                <a href="https://linkedin.com/in/alsaalsa0/" class="contact-item fade-in" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/alsaalsa0/" class="contact-item fade-in" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" style="margin-bottom:1.2rem; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(66,62,40,0.06); padding: 1.2rem; display: flex; align-items: center; gap: 1rem;">
                     <i class="fab fa-linkedin"></i>
-                    <h3>LinkedIn</h3>
-                    <span>Connect with me</span>
+                    <div style="text-align:left;">
+                      <h3 style="margin:0; font-size:1.1rem; color:var(--primary-color);">LinkedIn</h3>
+                      <span style="font-size:1rem; color:var(--secondary-color);">Connect with me</span>
+                    </div>
                 </a>
-                <a href="https://instagram.com/jenashreee" class="contact-item fade-in" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/jenashreee" class="contact-item fade-in" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(66,62,40,0.06); padding: 1.2rem; display: flex; align-items: center; gap: 1rem;">
                     <i class="fab fa-instagram"></i>
-                    <h3>Instagram</h3>
-                    <span>@jenashreee</span>
+                    <div style="text-align:left;">
+                      <h3 style="margin:0; font-size:1.1rem; color:var(--primary-color);">Instagram</h3>
+                      <span style="font-size:1rem; color:var(--secondary-color);">@jenashreee</span>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
+    <div style="height: 2.5rem;"></div>
 
     <footer class="footer">
         <div class="container">
@@ -60,7 +71,7 @@
         // Enhanced Navigation
         const navbar = document.querySelector('.navbar');
         const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+        const navLinks = document.getElementById('navLinks');
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -75,14 +86,24 @@
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            const expanded = navLinks.classList.contains('active');
+            mobileMenu.setAttribute('aria-expanded', expanded);
         });
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu when clicking outside or on a link
         document.addEventListener('click', (e) => {
             if (!navbar.contains(e.target)) {
                 navLinks.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
             }
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            });
         });
 
         // Enhanced scroll animations
