@@ -30,37 +30,91 @@
     <main>
         <section class="hero" id="hero">
             <div class="container">
-                <div class="hero-content fade-in">
-                    <div class="hero-text">
+                <div class="hero-content">
+                    <div class="hero-text motion-reveal">
                         <h1>Hello, I'm<br>Alisha Pandey</h1>
                         <h2>Explorer</h2>
                         <p class="lead hero-quote">"I don't always know where to start but once I see it come to life, the path makes sense."</p>
                     </div>
-                    <div class="profile-container float-animation">
+                    <div class="profile-container motion-reveal">
                         <img src="profile.jpg" alt="Alisha Pandey" class="profile-image" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="about" class="about-section section">
             <div class="container">
-                <h2 class="section-title fade-in">Life Experience</h2>
-                <div class="about-content fade-in">
-                    <p class="about-text">A curious mind, a builder at heart, and someone who loves turning random ideas into something impactful. My journey's been a mix of exploration, experimentation, and a whole lot of learning-by-doing. Whether it's solving problems, designing new paths, or just asking "what if?"</p>
+                <div class="section-header motion-reveal">
+                    <h2 class="section-title">Life Experience</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="about-content motion-reveal">
+                    <div class="card">
+                        <p class="about-text">A curious mind, a builder at heart, and someone who loves turning random ideas into something impactful. My journey's been a mix of exploration, experimentation, and a whole lot of learning-by-doing. Whether it's solving problems, designing new paths, or just asking "what if?"</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="connect" class="connect-section">
+        <section id="connect" class="connect-section section">
             <div class="container">
-                <h2 class="section-title fade-in">Let's Connect</h2>
-                <div class="connect-content fade-in">
-                    <p class="connect-text">If you're into swapping stories, brainstorming ideas, or just chatting about what drives us—let's talk. Whether we build something together or simply learn from each other, I'm all in for good conversations and new connections.</p>
-                    <div class="cta-button">
-                        <a href="contact.html" class="read-more-btn">
-                            Get in Touch <i class="fas fa-arrow-right"></i>
-                        </a>
+                <div class="section-header motion-reveal">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="connect-content motion-reveal">
+                    <div class="card">
+                        <p class="connect-text">If you're into swapping stories, brainstorming ideas, or just chatting about what drives us—let's talk. Whether we build something together or simply learn from each other, I'm all in for good conversations and new connections.</p>
+                        <div class="cta-button">
+                            <a href="contact.html" class="read-more-btn">
+                                Get in Touch <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="games" class="games-section section">
+            <div class="container">
+                <div class="section-header motion-reveal">
+                    <h2 class="section-title">Interactive Experience</h2>
+                    <p class="section-subtitle">Take a break and enjoy some interactive elements while you're here</p>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card motion-reveal">
+                        <div class="game-card__icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3 class="game-card__title">Memory Match</h3>
+                        <p class="game-card__description">Test your memory with this classic card matching game. Find all the pairs to win!</p>
+                        <button class="game-card__button" onclick="startMemoryGame()">
+                            Play Now <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="game-card motion-reveal">
+                        <div class="game-card__icon">
+                            <i class="fas fa-dice"></i>
+                        </div>
+                        <h3 class="game-card__title">Quick Quiz</h3>
+                        <p class="game-card__description">Answer fun questions about creativity, leadership, and innovation.</p>
+                        <button class="game-card__button" onclick="startQuiz()">
+                            Start Quiz <i class="fas fa-question"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="game-card motion-reveal">
+                        <div class="game-card__icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="game-card__title">Color Harmony</h3>
+                        <p class="game-card__description">Create beautiful color combinations and discover your aesthetic preferences.</p>
+                        <button class="game-card__button" onclick="startColorGame()">
+                            Explore <i class="fas fa-magic"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -119,9 +173,252 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(element => {
+        document.querySelectorAll('.motion-reveal').forEach(element => {
             observer.observe(element);
         });
+
+        // Interactive Games Functions
+        function startMemoryGame() {
+            const gameHTML = `
+                <div class="game-modal" id="memoryGameModal">
+                    <div class="game-modal-content">
+                        <div class="game-modal-header">
+                            <h3>Memory Match</h3>
+                            <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                        </div>
+                        <div class="game-stats">
+                            <span>Moves: <span id="moves">0</span></span>
+                            <span>Time: <span id="time">0</span>s</span>
+                        </div>
+                        <div class="memory-grid" id="memoryGrid"></div>
+                        <button class="game-card__button" onclick="resetMemoryGame()">New Game</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', gameHTML);
+            initializeMemoryGame();
+        }
+
+        function startQuiz() {
+            const questions = [
+                {
+                    question: "What's your approach to solving complex problems?",
+                    options: ["Analyze thoroughly first", "Jump in and iterate", "Collaborate with others", "Research best practices"]
+                },
+                {
+                    question: "How do you prefer to lead a team?",
+                    options: ["Lead by example", "Empower and delegate", "Provide clear direction", "Foster creativity"]
+                },
+                {
+                    question: "What motivates you most in your work?",
+                    options: ["Making an impact", "Learning new things", "Building relationships", "Achieving goals"]
+                }
+            ];
+            
+            let currentQuestion = 0;
+            let score = 0;
+            
+            function showQuestion() {
+                if (currentQuestion >= questions.length) {
+                    showQuizResults();
+                    return;
+                }
+                
+                const q = questions[currentQuestion];
+                const quizHTML = `
+                    <div class="game-modal" id="quizModal">
+                        <div class="game-modal-content">
+                            <div class="game-modal-header">
+                                <h3>Quick Quiz</h3>
+                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                            </div>
+                            <div class="quiz-progress">Question ${currentQuestion + 1} of ${questions.length}</div>
+                            <h4 class="quiz-question">${q.question}</h4>
+                            <div class="quiz-options">
+                                ${q.options.map((option, index) => 
+                                    `<button class="quiz-option" onclick="selectAnswer(${index})">${option}</button>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', quizHTML);
+            }
+            
+            window.selectAnswer = function(optionIndex) {
+                score += optionIndex + 1;
+                currentQuestion++;
+                closeGameModal();
+                setTimeout(showQuestion, 300);
+            };
+            
+            function showQuizResults() {
+                const resultHTML = `
+                    <div class="game-modal" id="quizModal">
+                        <div class="game-modal-content">
+                            <div class="game-modal-header">
+                                <h3>Quiz Complete!</h3>
+                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                            </div>
+                            <div class="quiz-results">
+                                <h4>Your Score: ${score}</h4>
+                                <p>Thanks for playing! Your answers show your unique perspective on leadership and creativity.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', resultHTML);
+            }
+            
+            showQuestion();
+        }
+
+        function startColorGame() {
+            const colorGameHTML = `
+                <div class="game-modal" id="colorGameModal">
+                    <div class="game-modal-content">
+                        <div class="game-modal-header">
+                            <h3>Color Harmony</h3>
+                            <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                        </div>
+                        <div class="color-palette" id="colorPalette">
+                            <div class="color-swatch" style="background: #3498db"></div>
+                            <div class="color-swatch" style="background: #e74c3c"></div>
+                            <div class="color-swatch" style="background: #2ecc71"></div>
+                            <div class="color-swatch" style="background: #f39c12"></div>
+                            <div class="color-swatch" style="background: #9b59b6"></div>
+                        </div>
+                        <div class="color-mixer">
+                            <h4>Mix Colors</h4>
+                            <div class="color-inputs">
+                                <input type="color" id="color1" value="#3498db">
+                                <input type="color" id="color2" value="#e74c3c">
+                            </div>
+                            <div class="mixed-color" id="mixedColor"></div>
+                            <button class="game-card__button" onclick="mixColors()">Mix Colors</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', colorGameHTML);
+            initializeColorGame();
+        }
+
+        function closeGameModal() {
+            const modals = document.querySelectorAll('.game-modal');
+            modals.forEach(modal => modal.remove());
+        }
+
+        // Memory Game Implementation
+        function initializeMemoryGame() {
+            const grid = document.getElementById('memoryGrid');
+            const cards = ['🎯', '🎨', '🚀', '💡', '🌟', '🎪', '🎭', '🎪'];
+            const gameCards = [...cards, ...cards];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let moves = 0;
+            let startTime = Date.now();
+            
+            // Shuffle cards
+            gameCards.sort(() => Math.random() - 0.5);
+            
+            gameCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'memory-card';
+                cardElement.dataset.value = card;
+                cardElement.dataset.index = index;
+                cardElement.innerHTML = '<div class="card-back">?</div>';
+                
+                cardElement.addEventListener('click', () => flipCard(cardElement));
+                grid.appendChild(cardElement);
+            });
+            
+            function flipCard(cardElement) {
+                if (flippedCards.length === 2 || cardElement.classList.contains('flipped') || cardElement.classList.contains('matched')) {
+                    return;
+                }
+                
+                cardElement.classList.add('flipped');
+                cardElement.innerHTML = cardElement.dataset.value;
+                flippedCards.push(cardElement);
+                
+                if (flippedCards.length === 2) {
+                    moves++;
+                    document.getElementById('moves').textContent = moves;
+                    
+                    if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {
+                        flippedCards.forEach(card => card.classList.add('matched'));
+                        matchedPairs++;
+                        
+                        if (matchedPairs === cards.length) {
+                            const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+                            document.getElementById('time').textContent = timeElapsed;
+                            setTimeout(() => {
+                                alert(`Congratulations! You completed the game in ${moves} moves and ${timeElapsed} seconds!`);
+                            }, 500);
+                        }
+                    } else {
+                        setTimeout(() => {
+                            flippedCards.forEach(card => {
+                                card.classList.remove('flipped');
+                                card.innerHTML = '<div class="card-back">?</div>';
+                            });
+                        }, 1000);
+                    }
+                    flippedCards = [];
+                }
+            }
+        }
+
+        function resetMemoryGame() {
+            closeGameModal();
+            setTimeout(startMemoryGame, 300);
+        }
+
+        // Color Game Implementation
+        function initializeColorGame() {
+            const color1 = document.getElementById('color1');
+            const color2 = document.getElementById('color2');
+            const mixedColor = document.getElementById('mixedColor');
+            
+            color1.addEventListener('input', mixColors);
+            color2.addEventListener('input', mixColors);
+            
+            mixColors();
+        }
+
+        function mixColors() {
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+            const mixedColor = document.getElementById('mixedColor');
+            
+            // Simple color mixing (average RGB values)
+            const rgb1 = hexToRgb(color1);
+            const rgb2 = hexToRgb(color2);
+            
+            const mixedRgb = {
+                r: Math.round((rgb1.r + rgb2.r) / 2),
+                g: Math.round((rgb1.g + rgb2.g) / 2),
+                b: Math.round((rgb1.b + rgb2.b) / 2)
+            };
+            
+            const mixedHex = rgbToHex(mixedRgb.r, mixedRgb.g, mixedRgb.b);
+            mixedColor.style.background = mixedHex;
+            mixedColor.textContent = mixedHex;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
     </script>
     </body>
 </html>

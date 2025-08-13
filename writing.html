@@ -27,11 +27,14 @@
         </div>
     </nav>
 
-    <section class="writing-section">
+    <section class="writing-section section">
         <div class="container">
-            <h1 class="page-title fade-in" style="text-align:center;">Writing</h1>
+            <div class="section-header motion-reveal">
+                <h1 class="section-title">Writing</h1>
+                <div class="section-divider"></div>
+            </div>
             <div class="writing-grid">
-                <article class="writing-card fade-in" data-writing-id="1">
+                <article class="writing-card motion-reveal" data-writing-id="1">
                     <h3>Our Happy Place</h3>
                     <div class="writing-preview">How would the world be if we'd encourage instead of judge...</div>
                     <button class="read-more-btn" onclick="openWriting(1)" aria-label="Read more about Our Happy Place">
@@ -39,7 +42,7 @@
                     </button>
                 </article>
 
-                <article class="writing-card fade-in" data-writing-id="2">
+                <article class="writing-card motion-reveal" data-writing-id="2">
                     <h3>Living in a Bubble</h3>
                     <div class="writing-preview">Lately, I've been living in a bubble...</div>
                     <button class="read-more-btn" onclick="openWriting(2)" aria-label="Read more about Living in a Bubble">
@@ -47,7 +50,7 @@
                     </button>
                 </article>
 
-                <article class="writing-card fade-in" data-writing-id="3">
+                <article class="writing-card motion-reveal" data-writing-id="3">
                     <h3>Butterflies</h3>
                     <div class="writing-preview">Damn! All those butterflies...</div>
                     <button class="read-more-btn" onclick="openWriting(3)" aria-label="Read more about Butterflies">
@@ -55,7 +58,7 @@
                     </button>
                 </article>
 
-                <article class="writing-card fade-in" data-writing-id="4">
+                <article class="writing-card motion-reveal" data-writing-id="4">
                     <h3>Love's Journey</h3>
                     <div class="writing-preview">Love; The feeling he had for her...</div>
                     <button class="read-more-btn" onclick="openWriting(4)" aria-label="Read more about Love's Journey">
@@ -269,7 +272,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(element => {
+        document.querySelectorAll('.motion-reveal').forEach(element => {
             observer.observe(element);
         });
     </script>

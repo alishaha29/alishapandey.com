@@ -12,30 +12,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="nav-content">
             <a href="index.html" class="nav-brand">AP</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="writing.html">Writing</a></li>
                 <li><a href="resume.html" class="active">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="mobile-menu" aria-label="Toggle menu">
+            <button class="mobile-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <section class="resume-section">
+    <section class="resume-section section">
         <div class="container">
-            <div class="resume-header fade-in">
+            <div class="resume-header motion-reveal">
                 <h1>Hello, I Am Alisha Pandey and also an explorer!</h1>
-                <p class="profile-summary">People Operations is a role that aligns with my value of being a compassionate leader, working on strategic and innovative ideas that help both the organization and people thrive.</p>
+                <p class="profile-summary">An empathetic leader and strategic thinker, I specialize in People Operations and Talent Management, with over six years' experience in global recruitment, employee engagement, and HR strategy. I'm passionate about bringing strategic ideas to life in ways that genuinely support and inspire people.</p>
             </div>
 
             <div class="resume-grid">
-                <div class="resume-main fade-in">
+                <div class="resume-main motion-reveal">
                     <div class="timeline-section">
                         <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
                         <div class="timeline-item">
@@ -85,8 +85,8 @@
                     </div>
                 </div>
 
-                <div class="resume-sidebar fade-in">
-                    <div class="sidebar-section">
+                <div class="resume-sidebar">
+                    <div class="sidebar-section motion-reveal">
                         <h2><i class="fas fa-star"></i> Activities & Achievements</h2>
                         <ul class="achievement-list">
                             <li>Founded People Management Community (PMC) for HR professionals</li>
@@ -97,7 +97,7 @@
                         </ul>
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section motion-reveal">
                         <h2><i class="fas fa-tools"></i> Expertise</h2>
                         <div class="skills-grid">
                             <div class="skill-item">Operations</div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section motion-reveal">
                         <h2><i class="fas fa-address-card"></i> Contact</h2>
                         <ul class="contact-list">
                             <li><i class="fas fa-envelope"></i> alishapandey48@gmail.com</li>
@@ -132,7 +132,7 @@
         // Enhanced Navigation
         const navbar = document.querySelector('.navbar');
         const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+        const navLinks = document.getElementById('navLinks');
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -147,6 +147,7 @@
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', navLinks.classList.contains('active'));
         });
 
         // Close mobile menu when clicking outside
@@ -154,6 +155,7 @@
             if (!navbar.contains(e.target)) {
                 navLinks.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -172,7 +174,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(element => {
+        document.querySelectorAll('.motion-reveal').forEach(element => {
             observer.observe(element);
         });
     </script>

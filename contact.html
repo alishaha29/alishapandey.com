@@ -21,35 +21,44 @@
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <button class="mobile-menu" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+            <button class="mobile-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <section class="contact-section">
+    <section class="contact-section section">
         <div class="container">
             <div class="section-header motion-reveal">
-                <h1 class="page-title">Get in Touch</h1>
+                <h1 class="section-title">Get in Touch</h1>
                 <div class="section-divider"></div>
             </div>
+            
             <div class="contact-info">
                 <a href="mailto:alishapandey48@gmail.com" class="contact-card motion-reveal" aria-label="Email Alisha Pandey">
-                    <i class="fas fa-envelope contact-card__icon" aria-hidden="true"></i>
+                    <div class="contact-card__icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
                     <div class="contact-card__content">
                         <h3 class="contact-card__label">Email</h3>
                         <span class="contact-card__value">alishapandey48@gmail.com</span>
                     </div>
                 </a>
+                
                 <a href="https://linkedin.com/in/alsaalsa0/" class="contact-card motion-reveal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                    <i class="fab fa-linkedin contact-card__icon" aria-hidden="true"></i>
+                    <div class="contact-card__icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
                     <div class="contact-card__content">
                         <h3 class="contact-card__label">LinkedIn</h3>
                         <span class="contact-card__value">Connect with me</span>
                     </div>
                 </a>
+                
                 <a href="https://instagram.com/jenashreee" class="contact-card motion-reveal" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
-                    <i class="fab fa-instagram contact-card__icon" aria-hidden="true"></i>
+                    <div class="contact-card__icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
                     <div class="contact-card__content">
                         <h3 class="contact-card__label">Instagram</h3>
                         <span class="contact-card__value">@jenashreee</span>
@@ -60,26 +69,34 @@
     </section>
 
     <footer class="footer">
-        <div class="container" style="padding: 0; margin: 0; display: flex; justify-content: center; align-items: center;">
-            <p style="margin: 0; padding: 0;">© 2025 Alisha Pandey. All rights reserved.</p>
+        <div class="container">
+            <p>© 2025 Alisha Pandey. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // Enhanced Navigation
         const navbar = document.querySelector('.navbar');
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.getElementById('navLinks');
 
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
+        // Mobile menu toggle
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             mobileMenu.setAttribute('aria-expanded', navLinks.classList.contains('active'));
         });
+
+        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navbar.contains(e.target)) {
                 navLinks.classList.remove('active');
@@ -88,11 +105,24 @@
             }
         });
 
-        // Reveal on scroll
+        // Enhanced scroll animations
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.motion-reveal').forEach(el => observer.observe(el));
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.motion-reveal').forEach(element => {
+            observer.observe(element);
+        });
     </script>
 </body>
 </html> 
