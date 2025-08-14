@@ -179,245 +179,314 @@
 
         // Interactive Games Functions
         function startMemoryGame() {
-            const gameHTML = `
-                <div class="game-modal" id="memoryGameModal">
-                    <div class="game-modal-content">
-                        <div class="game-modal-header">
-                            <h3>Memory Match</h3>
-                            <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+            try {
+                const gameHTML = `
+                    <div class="game-modal" id="memoryGameModal">
+                        <div class="game-modal-content">
+                            <div class="game-modal-header">
+                                <h3>Memory Match</h3>
+                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                            </div>
+                            <div class="game-stats">
+                                <span>Moves: <span id="moves">0</span></span>
+                                <span>Time: <span id="time">0</span>s</span>
+                            </div>
+                            <div class="memory-grid" id="memoryGrid"></div>
+                            <button class="game-card__button" onclick="resetMemoryGame()">New Game</button>
                         </div>
-                        <div class="game-stats">
-                            <span>Moves: <span id="moves">0</span></span>
-                            <span>Time: <span id="time">0</span>s</span>
-                        </div>
-                        <div class="memory-grid" id="memoryGrid"></div>
-                        <button class="game-card__button" onclick="resetMemoryGame()">New Game</button>
                     </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', gameHTML);
-            initializeMemoryGame();
+                `;
+                document.body.insertAdjacentHTML('beforeend', gameHTML);
+                initializeMemoryGame();
+            } catch (error) {
+                console.error('Error starting memory game:', error);
+                alert('Game failed to load. Please try again.');
+            }
         }
 
         function startQuiz() {
-            const questions = [
-                {
-                    question: "What's your approach to solving complex problems?",
-                    options: ["Analyze thoroughly first", "Jump in and iterate", "Collaborate with others", "Research best practices"]
-                },
-                {
-                    question: "How do you prefer to lead a team?",
-                    options: ["Lead by example", "Empower and delegate", "Provide clear direction", "Foster creativity"]
-                },
-                {
-                    question: "What motivates you most in your work?",
-                    options: ["Making an impact", "Learning new things", "Building relationships", "Achieving goals"]
-                }
-            ];
-            
-            let currentQuestion = 0;
-            let score = 0;
-            
-            function showQuestion() {
-                if (currentQuestion >= questions.length) {
-                    showQuizResults();
-                    return;
+            try {
+                const questions = [
+                    {
+                        question: "What's your approach to solving complex problems?",
+                        options: ["Analyze thoroughly first", "Jump in and iterate", "Collaborate with others", "Research best practices"]
+                    },
+                    {
+                        question: "How do you prefer to lead a team?",
+                        options: ["Lead by example", "Empower and delegate", "Provide clear direction", "Foster creativity"]
+                    },
+                    {
+                        question: "What motivates you most in your work?",
+                        options: ["Making an impact", "Learning new things", "Building relationships", "Achieving goals"]
+                    }
+                ];
+                
+                let currentQuestion = 0;
+                let score = 0;
+                
+                function showQuestion() {
+                    if (currentQuestion >= questions.length) {
+                        showQuizResults();
+                        return;
+                    }
+                    
+                    const q = questions[currentQuestion];
+                    const quizHTML = `
+                        <div class="game-modal" id="quizModal">
+                            <div class="game-modal-content">
+                                <div class="game-modal-header">
+                                    <h3>Quick Quiz</h3>
+                                    <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                                </div>
+                                <div class="quiz-progress">Question ${currentQuestion + 1} of ${questions.length}</div>
+                                <h4 class="quiz-question">${q.question}</h4>
+                                <div class="quiz-options">
+                                    ${q.options.map((option, index) => 
+                                        `<button class="quiz-option" onclick="selectAnswer(${index})">${option}</button>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', quizHTML);
                 }
                 
-                const q = questions[currentQuestion];
-                const quizHTML = `
-                    <div class="game-modal" id="quizModal">
-                        <div class="game-modal-content">
-                            <div class="game-modal-header">
-                                <h3>Quick Quiz</h3>
-                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
-                            </div>
-                            <div class="quiz-progress">Question ${currentQuestion + 1} of ${questions.length}</div>
-                            <h4 class="quiz-question">${q.question}</h4>
-                            <div class="quiz-options">
-                                ${q.options.map((option, index) => 
-                                    `<button class="quiz-option" onclick="selectAnswer(${index})">${option}</button>`
-                                ).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', quizHTML);
-            }
-            
-            window.selectAnswer = function(optionIndex) {
-                score += optionIndex + 1;
-                currentQuestion++;
-                closeGameModal();
-                setTimeout(showQuestion, 300);
-            };
-            
-            function showQuizResults() {
-                const resultHTML = `
-                    <div class="game-modal" id="quizModal">
-                        <div class="game-modal-content">
-                            <div class="game-modal-header">
-                                <h3>Quiz Complete!</h3>
-                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
-                            </div>
-                            <div class="quiz-results">
-                                <h4>Your Score: ${score}</h4>
-                                <p>Thanks for playing! Your answers show your unique perspective on leadership and creativity.</p>
+                window.selectAnswer = function(optionIndex) {
+                    try {
+                        score += optionIndex + 1;
+                        currentQuestion++;
+                        closeGameModal();
+                        setTimeout(showQuestion, 300);
+                    } catch (error) {
+                        console.error('Error selecting answer:', error);
+                    }
+                };
+                
+                function showQuizResults() {
+                    const resultHTML = `
+                        <div class="game-modal" id="quizModal">
+                            <div class="game-modal-content">
+                                <div class="game-modal-header">
+                                    <h3>Quiz Complete!</h3>
+                                    <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
+                                </div>
+                                <div class="quiz-results">
+                                    <h4>Your Score: ${score}</h4>
+                                    <p>Thanks for playing! Your answers show your unique perspective on leadership and creativity.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', resultHTML);
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', resultHTML);
+                }
+                
+                showQuestion();
+            } catch (error) {
+                console.error('Error starting quiz:', error);
+                alert('Quiz failed to load. Please try again.');
             }
-            
-            showQuestion();
         }
 
         function startColorGame() {
-            const colorGameHTML = `
-                <div class="game-modal" id="colorGameModal">
-                    <div class="game-modal-content">
-                        <div class="game-modal-header">
-                            <h3>Color Harmony</h3>
-                            <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
-                        </div>
-                        <div class="color-palette" id="colorPalette">
-                            <div class="color-swatch" style="background: #3498db"></div>
-                            <div class="color-swatch" style="background: #e74c3c"></div>
-                            <div class="color-swatch" style="background: #2ecc71"></div>
-                            <div class="color-swatch" style="background: #f39c12"></div>
-                            <div class="color-swatch" style="background: #9b59b6"></div>
-                        </div>
-                        <div class="color-mixer">
-                            <h4>Mix Colors</h4>
-                            <div class="color-inputs">
-                                <input type="color" id="color1" value="#3498db">
-                                <input type="color" id="color2" value="#e74c3c">
+            try {
+                const colorGameHTML = `
+                    <div class="game-modal" id="colorGameModal">
+                        <div class="game-modal-content">
+                            <div class="game-modal-header">
+                                <h3>Color Harmony</h3>
+                                <button class="close-game-modal" onclick="closeGameModal()">&times;</button>
                             </div>
-                            <div class="mixed-color" id="mixedColor"></div>
-                            <button class="game-card__button" onclick="mixColors()">Mix Colors</button>
+                            <div class="color-palette" id="colorPalette">
+                                <div class="color-swatch" style="background: #3498db"></div>
+                                <div class="color-swatch" style="background: #e74c3c"></div>
+                                <div class="color-swatch" style="background: #2ecc71"></div>
+                                <div class="color-swatch" style="background: #f39c12"></div>
+                                <div class="color-swatch" style="background: #9b59b6"></div>
+                            </div>
+                            <div class="color-mixer">
+                                <h4>Mix Colors</h4>
+                                <div class="color-inputs">
+                                    <input type="color" id="color1" value="#3498db">
+                                    <input type="color" id="color2" value="#e74c3c">
+                                </div>
+                                <div class="mixed-color" id="mixedColor"></div>
+                                <button class="game-card__button" onclick="mixColors()">Mix Colors</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', colorGameHTML);
-            initializeColorGame();
+                `;
+                document.body.insertAdjacentHTML('beforeend', colorGameHTML);
+                initializeColorGame();
+            } catch (error) {
+                console.error('Error starting color game:', error);
+                alert('Color game failed to load. Please try again.');
+            }
         }
 
         function closeGameModal() {
-            const modals = document.querySelectorAll('.game-modal');
-            modals.forEach(modal => modal.remove());
+            try {
+                const modals = document.querySelectorAll('.game-modal');
+                modals.forEach(modal => modal.remove());
+            } catch (error) {
+                console.error('Error closing modal:', error);
+            }
         }
 
         // Memory Game Implementation
         function initializeMemoryGame() {
-            const grid = document.getElementById('memoryGrid');
-            const cards = ['🎯', '🎨', '🚀', '💡', '🌟', '🎪', '🎭', '🎪'];
-            const gameCards = [...cards, ...cards];
-            let flippedCards = [];
-            let matchedPairs = 0;
-            let moves = 0;
-            let startTime = Date.now();
-            
-            // Shuffle cards
-            gameCards.sort(() => Math.random() - 0.5);
-            
-            gameCards.forEach((card, index) => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'memory-card';
-                cardElement.dataset.value = card;
-                cardElement.dataset.index = index;
-                cardElement.innerHTML = '<div class="card-back">?</div>';
+            try {
+                const grid = document.getElementById('memoryGrid');
+                if (!grid) return;
                 
-                cardElement.addEventListener('click', () => flipCard(cardElement));
-                grid.appendChild(cardElement);
-            });
-            
-            function flipCard(cardElement) {
-                if (flippedCards.length === 2 || cardElement.classList.contains('flipped') || cardElement.classList.contains('matched')) {
-                    return;
-                }
+                const cards = ['🎯', '🎨', '🚀', '💡', '🌟', '🎪', '🎭', '🎪'];
+                const gameCards = [...cards, ...cards];
+                let flippedCards = [];
+                let matchedPairs = 0;
+                let moves = 0;
+                let startTime = Date.now();
+                let gameTimer;
                 
-                cardElement.classList.add('flipped');
-                cardElement.innerHTML = cardElement.dataset.value;
-                flippedCards.push(cardElement);
-                
-                if (flippedCards.length === 2) {
-                    moves++;
-                    document.getElementById('moves').textContent = moves;
-                    
-                    if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {
-                        flippedCards.forEach(card => card.classList.add('matched'));
-                        matchedPairs++;
-                        
-                        if (matchedPairs === cards.length) {
-                            const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
-                            document.getElementById('time').textContent = timeElapsed;
-                            setTimeout(() => {
-                                alert(`Congratulations! You completed the game in ${moves} moves and ${timeElapsed} seconds!`);
-                            }, 500);
-                        }
-                    } else {
-                        setTimeout(() => {
-                            flippedCards.forEach(card => {
-                                card.classList.remove('flipped');
-                                card.innerHTML = '<div class="card-back">?</div>';
-                            });
-                        }, 1000);
+                // Start timer
+                gameTimer = setInterval(() => {
+                    const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+                    const timeElement = document.getElementById('time');
+                    if (timeElement) {
+                        timeElement.textContent = timeElapsed;
                     }
-                    flippedCards = [];
+                }, 1000);
+                
+                // Shuffle cards
+                gameCards.sort(() => Math.random() - 0.5);
+                
+                gameCards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'memory-card';
+                    cardElement.dataset.value = card;
+                    cardElement.dataset.index = index;
+                    cardElement.innerHTML = '<div class="card-back">?</div>';
+                    
+                    cardElement.addEventListener('click', () => flipCard(cardElement));
+                    grid.appendChild(cardElement);
+                });
+                
+                function flipCard(cardElement) {
+                    if (flippedCards.length === 2 || cardElement.classList.contains('flipped') || cardElement.classList.contains('matched')) {
+                        return;
+                    }
+                    
+                    cardElement.classList.add('flipped');
+                    cardElement.innerHTML = cardElement.dataset.value;
+                    flippedCards.push(cardElement);
+                    
+                    if (flippedCards.length === 2) {
+                        moves++;
+                        const movesElement = document.getElementById('moves');
+                        if (movesElement) {
+                            movesElement.textContent = moves;
+                        }
+                        
+                        if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {
+                            flippedCards.forEach(card => card.classList.add('matched'));
+                            matchedPairs++;
+                            
+                            if (matchedPairs === cards.length) {
+                                clearInterval(gameTimer);
+                                const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+                                setTimeout(() => {
+                                    alert(`🎉 Congratulations! You completed the game in ${moves} moves and ${timeElapsed} seconds!`);
+                                }, 500);
+                            }
+                        } else {
+                            setTimeout(() => {
+                                flippedCards.forEach(card => {
+                                    card.classList.remove('flipped');
+                                    card.innerHTML = '<div class="card-back">?</div>';
+                                });
+                            }, 1000);
+                        }
+                        flippedCards = [];
+                    }
                 }
+            } catch (error) {
+                console.error('Error initializing memory game:', error);
             }
         }
 
         function resetMemoryGame() {
-            closeGameModal();
-            setTimeout(startMemoryGame, 300);
+            try {
+                closeGameModal();
+                setTimeout(startMemoryGame, 300);
+            } catch (error) {
+                console.error('Error resetting game:', error);
+            }
         }
 
         // Color Game Implementation
         function initializeColorGame() {
-            const color1 = document.getElementById('color1');
-            const color2 = document.getElementById('color2');
-            const mixedColor = document.getElementById('mixedColor');
-            
-            color1.addEventListener('input', mixColors);
-            color2.addEventListener('input', mixColors);
-            
-            mixColors();
+            try {
+                const color1 = document.getElementById('color1');
+                const color2 = document.getElementById('color2');
+                const mixedColor = document.getElementById('mixedColor');
+                
+                if (color1 && color2 && mixedColor) {
+                    color1.addEventListener('input', mixColors);
+                    color2.addEventListener('input', mixColors);
+                    mixColors();
+                }
+            } catch (error) {
+                console.error('Error initializing color game:', error);
+            }
         }
 
         function mixColors() {
-            const color1 = document.getElementById('color1').value;
-            const color2 = document.getElementById('color2').value;
-            const mixedColor = document.getElementById('mixedColor');
-            
-            // Simple color mixing (average RGB values)
-            const rgb1 = hexToRgb(color1);
-            const rgb2 = hexToRgb(color2);
-            
-            const mixedRgb = {
-                r: Math.round((rgb1.r + rgb2.r) / 2),
-                g: Math.round((rgb1.g + rgb2.g) / 2),
-                b: Math.round((rgb1.b + rgb2.b) / 2)
-            };
-            
-            const mixedHex = rgbToHex(mixedRgb.r, mixedRgb.g, mixedRgb.b);
-            mixedColor.style.background = mixedHex;
-            mixedColor.textContent = mixedHex;
+            try {
+                const color1 = document.getElementById('color1');
+                const color2 = document.getElementById('color2');
+                const mixedColor = document.getElementById('mixedColor');
+                
+                if (!color1 || !color2 || !mixedColor) return;
+                
+                // Simple color mixing (average RGB values)
+                const rgb1 = hexToRgb(color1.value);
+                const rgb2 = hexToRgb(color2.value);
+                
+                if (rgb1 && rgb2) {
+                    const mixedRgb = {
+                        r: Math.round((rgb1.r + rgb2.r) / 2),
+                        g: Math.round((rgb1.g + rgb2.g) / 2),
+                        b: Math.round((rgb1.b + rgb2.b) / 2)
+                    };
+                    
+                    const mixedHex = rgbToHex(mixedRgb.r, mixedRgb.g, mixedRgb.b);
+                    mixedColor.style.background = mixedHex;
+                    mixedColor.textContent = mixedHex;
+                }
+            } catch (error) {
+                console.error('Error mixing colors:', error);
+            }
         }
 
         function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
+            try {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            } catch (error) {
+                console.error('Error converting hex to RGB:', error);
+                return null;
+            }
         }
 
         function rgbToHex(r, g, b) {
-            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            try {
+                return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            } catch (error) {
+                console.error('Error converting RGB to hex:', error);
+                return '#000000';
+            }
         }
     </script>
     </body>
